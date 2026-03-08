@@ -12,7 +12,7 @@
       <h1>Re-irradiation EQD2 Calculator</h1>
       <p class="subhead">Radiation Therapy Biological Dose Calculator</p>
       <div class="notice">
-        <div><strong>Version:</strong> HTML v1.0</div>
+        <div><strong>Version:</strong> HTML v1.1</div>
         <div><strong>Disclaimer:</strong> This tool is provided for reference and convenience only. It does not replace clinical judgment, institutional policies, peer review, or verification against the original source material.</div>
       </div>
     </header>
@@ -58,6 +58,18 @@
         </div>
       </div>
 
+      <div class="grid two-col secondary">
+        <div>
+          <label>Time-correction / recovery factor applied to Course 1 (%)
+            <input id="recovery" type="number" step="0.1" min="0" max="100" value="0" />
+          </label>
+        </div>
+        <div class="hint-box">
+          <strong>Interpretation:</strong> a recovery factor reduces the biological contribution of <strong>Course 1</strong> before summation.<br>
+          Example: 25% recovery → corrected Course 1 EQD2 = 75% of original Course 1 EQD2.
+        </div>
+      </div>
+
       <div class="actions">
         <button id="copyBtn" type="button">Copy summary</button>
         <button id="pdfBtn" type="button">Export to PDF</button>
@@ -94,11 +106,15 @@
         </div>
 
         <div class="result-box total">
-          <div class="label">Total BED</div>
+          <div class="label">Course 1 corrected EQD2</div>
+          <div class="value" id="eqd2Corrected1">50.00 Gy</div>
+        </div>
+        <div class="result-box total">
+          <div class="label">Total BED (uncorrected)</div>
           <div class="value" id="bedTotal">173.33 Gy</div>
         </div>
         <div class="result-box total">
-          <div class="label">Total EQD2</div>
+          <div class="label">Total EQD2 (time-corrected)</div>
           <div class="value" id="eqd2Total">104.00 Gy</div>
         </div>
       </div>
@@ -109,6 +125,8 @@
           <p><strong>Dose per fraction:</strong> d = D / n</p>
           <p><strong>BED:</strong> BED = nd × (1 + d / (α/β))</p>
           <p><strong>EQD2:</strong> EQD2 = BED / (1 + 2 / (α/β))</p>
+          <p><strong>Corrected Course 1 EQD2:</strong> EQD2₁,corrected = EQD2₁ × (1 − recovery/100)</p>
+          <p><strong>Total time-corrected EQD2:</strong> EQD2total = EQD2₁,corrected + EQD2₂</p>
         </div>
       </details>
 

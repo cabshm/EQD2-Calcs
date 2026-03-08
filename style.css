@@ -75,6 +75,14 @@ input, select{
 .secondary{
   margin-top:6px;
 }
+.hint-box{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fbfcfe;
+  padding:12px;
+  color:#314154;
+  line-height:1.4;
+}
 .actions{
   display:flex;
   gap:10px;
