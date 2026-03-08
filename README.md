@@ -1,4 +1,8 @@
-# Re-irradiation EQD2 Calculator with OAR Recovery — v2.0
+# Re-irradiation EQD2 Calculator with OAR Recovery — v2.1
+
+Fixes:
+- OAR data is embedded locally in `data.js`, so the app works even when opened directly from downloaded files.
+- No dependency on `fetch()` for local testing.
 
 Includes:
 - OAR dropdown
@@ -13,13 +17,6 @@ Includes:
 ## Files
 - index.html
 - style.css
+- data.js
 - app.js
-- oar_recovery_data.json
-
-## Publish on GitHub Pages
-1. Create a new GitHub repo.
-2. Upload all files in this package.
-3. In GitHub, go to Settings → Pages.
-4. Choose Deploy from a branch.
-5. Select main and /(root).
-6. Save.
+- README.md

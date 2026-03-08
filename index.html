@@ -1,68 +1,171 @@
-
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Re‑irradiation EQD2 Calculator with OAR Recovery</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Re-irradiation EQD2 Calculator with OAR Recovery</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 <div class="container">
 
-<h1>Re‑irradiation EQD2 Calculator</h1>
+  <header class="hero">
+    <h1>Re-irradiation EQD2 Calculator</h1>
+    <p class="subhead">Radiation Therapy Biological Dose Calculator with OAR Recovery Guidance</p>
+    <div class="notice">
+      <div><strong>Version:</strong> HTML v2.1</div>
+      <div><strong>Disclaimer:</strong> This tool is provided for reference and convenience only. It does not replace clinical judgment, institutional policies, peer review, or verification against the original source material.</div>
+    </div>
+  </header>
 
-<div class="card">
+  <section class="card">
+    <h2>OAR Recovery Suggestion</h2>
 
-<h2>OAR Recovery Suggestion</h2>
+    <label for="oarSelect">Organ at Risk</label>
+    <select id="oarSelect"></select>
 
-<label>Organ at Risk</label>
-<select id="oarSelect"></select>
+    <label for="timeSelect">Time interval</label>
+    <select id="timeSelect">
+      <option value="<3mo">&lt; 3 months</option>
+      <option value="3-6mo">3–6 months</option>
+      <option value="6mo-1yr">6 months–1 year</option>
+      <option value="1-3yrs ">1–3 years</option>
+      <option value="More than 3yrs">More than 3 years</option>
+    </select>
 
-<label>Time interval</label>
-<select id="timeSelect">
-<option value="<3mo"><3 months</option>
-<option value="3-6mo">3–6 months</option>
-<option value="6mo-1yr">6 months–1 year</option>
-<option value="1-3yrs ">1–3 years</option>
-<option value="More than 3yrs">More than 3 years</option>
-</select>
+    <div class="grid two-col">
+      <div>
+        <label for="limit">D0.1cc EQD2 limit (Gy)</label>
+        <input id="limit" type="number" step="0.01">
+      </div>
+      <div>
+        <label for="recovery">Recovery factor (%)</label>
+        <input id="recovery" type="number" step="0.1" min="0" max="100">
+      </div>
+    </div>
 
-<label>D0.1cc EQD2 limit (Gy)</label>
-<input id="limit" type="number">
+    <div class="hint-box">
+      <strong>Interpretation:</strong> the recovery factor reduces the biological contribution of <strong>Course 1</strong> before summation.
+      Example: 25% recovery → corrected Course 1 EQD2 = 75% of original Course 1 EQD2.
+    </div>
+  </section>
 
-<label>Recovery factor (%)</label>
-<input id="recovery" type="number">
+  <section class="card">
+    <h2>EQD2 Calculator</h2>
 
+    <div class="grid two-col">
+      <div class="course">
+        <h3>Course 1</h3>
+        <label>Total dose (Gy)
+          <input id="dose1" type="number" step="0.01" value="50">
+        </label>
+        <label>Fractions
+          <input id="fx1" type="number" step="1" value="25">
+        </label>
+      </div>
+
+      <div class="course">
+        <h3>Course 2</h3>
+        <label>Total dose (Gy)
+          <input id="dose2" type="number" step="0.01" value="30">
+        </label>
+        <label>Fractions
+          <input id="fx2" type="number" step="1" value="5">
+        </label>
+      </div>
+    </div>
+
+    <div class="grid two-col">
+      <div>
+        <label for="ab">α/β (Gy)</label>
+        <input id="ab" type="number" step="0.1" value="3">
+      </div>
+      <div>
+        <label for="preset">Tissue preset</label>
+        <select id="preset">
+          <option value="">Custom</option>
+          <option value="2">Late responding tissue (2)</option>
+          <option value="3" selected>Late responding tissue (3)</option>
+          <option value="10">Tumor / early responding tissue (10)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="copyBtn" type="button">Copy summary</button>
+      <button id="pdfBtn" type="button">Export to PDF</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Results</h2>
+
+    <div class="results-grid">
+      <div class="result-box">
+        <div class="label">Course 1 dose/fraction</div>
+        <div class="value" id="dpf1">2.00 Gy</div>
+      </div>
+      <div class="result-box">
+        <div class="label">Course 1 BED</div>
+        <div class="value" id="bed1">83.33 Gy</div>
+      </div>
+      <div class="result-box">
+        <div class="label">Course 1 EQD2</div>
+        <div class="value" id="eqd21">50.00 Gy</div>
+      </div>
+
+      <div class="result-box">
+        <div class="label">Course 2 dose/fraction</div>
+        <div class="value" id="dpf2">6.00 Gy</div>
+      </div>
+      <div class="result-box">
+        <div class="label">Course 2 BED</div>
+        <div class="value" id="bed2">90.00 Gy</div>
+      </div>
+      <div class="result-box">
+        <div class="label">Course 2 EQD2</div>
+        <div class="value" id="eqd22">54.00 Gy</div>
+      </div>
+
+      <div class="result-box total">
+        <div class="label">Course 1 corrected EQD2</div>
+        <div class="value" id="eqd2Corrected1">50.00 Gy</div>
+      </div>
+      <div class="result-box total">
+        <div class="label">Total BED (uncorrected)</div>
+        <div class="value" id="bedTotal">173.33 Gy</div>
+      </div>
+      <div class="result-box total">
+        <div class="label">Total EQD2 (time-corrected)</div>
+        <div class="value" id="eqd2Total">104.00 Gy</div>
+      </div>
+    </div>
+
+    <div id="safetyCard" class="safety neutral">
+      <div class="safety-title">Safety indicator</div>
+      <div id="safetyText" class="safety-text">Enter values to compare total EQD2 against the selected OAR D0.1cc limit.</div>
+    </div>
+
+    <details class="details">
+      <summary>Show formulas</summary>
+      <div class="formula-block">
+        <p><strong>Dose per fraction:</strong> d = D / n</p>
+        <p><strong>BED:</strong> BED = nd × (1 + d / (α/β))</p>
+        <p><strong>EQD2:</strong> EQD2 = BED / (1 + 2 / (α/β))</p>
+        <p><strong>Corrected Course 1 EQD2:</strong> EQD2₁,corrected = EQD2₁ × (1 − recovery / 100)</p>
+        <p><strong>Total time-corrected EQD2:</strong> EQD2total = EQD2₁,corrected + EQD2₂</p>
+      </div>
+    </details>
+
+    <details class="details">
+      <summary>Show copyable summary</summary>
+      <pre id="summaryText"></pre>
+    </details>
+  </section>
 </div>
 
-<div class="card">
-
-<h2>EQD2 Calculator</h2>
-
-<label>Course 1 dose (Gy)</label>
-<input id="dose1" type="number" value="50">
-
-<label>Course 1 fractions</label>
-<input id="fx1" type="number" value="25">
-
-<label>Course 2 dose (Gy)</label>
-<input id="dose2" type="number" value="30">
-
-<label>Course 2 fractions</label>
-<input id="fx2" type="number" value="5">
-
-<label>Alpha/Beta</label>
-<input id="ab" type="number" value="3">
-
-<h3>Total EQD2</h3>
-<div id="result">0</div>
-
-</div>
-
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
