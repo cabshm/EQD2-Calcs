@@ -1,6 +1,12 @@
+
 body{font-family:Arial;background:#f5f7fb;margin:0;padding:30px}
-.container{max-width:900px;margin:auto}
-.card{background:white;padding:20px;border-radius:10px;margin-bottom:20px;border:1px solid #ddd}
+.container{max-width:1000px;margin:auto}
+.hero{margin-bottom:20px}
+.card{background:white;padding:20px;border-radius:12px;border:1px solid #ddd;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 label{display:block;margin-top:10px;font-weight:bold}
 input,select{width:100%;padding:8px;margin-top:5px}
-#result{font-size:28px;font-weight:bold;margin-top:10px}
+.results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.box{background:#fafafa;padding:20px;border-radius:10px;border:1px solid #ddd;text-align:center}
+.box.highlight{background:#eef5ff}
+.value{font-size:28px;font-weight:bold}

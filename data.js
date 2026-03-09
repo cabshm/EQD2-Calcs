@@ -1,4 +1,4 @@
-const OAR_DATA=[
+const OAR_DATA = [
   {
     "OAR": "Bladder",
     "D0.1cc EQD2 limit": 85.0,

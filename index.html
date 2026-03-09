@@ -1,58 +1,91 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Reirradiation EQD2 Calculator</title>
+<title>Re-irradiation EQD2 Calculator</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
-<h1>Reirradiation EQD2 Calculator</h1>
+<header class="hero">
+<h1>Re‑irradiation EQD2 Calculator</h1>
+<p class="subhead">Radiation Therapy Biological Dose Calculator with OAR Recovery Guidance</p>
+</header>
 
-<div class="card">
+<section class="card">
 <h2>OAR Recovery Suggestion</h2>
 
 <label>Organ at Risk</label>
-<select id="oar"></select>
+<select id="oarSelect"></select>
 
 <label>Time interval</label>
-<select id="interval">
-<option value="<3mo"><3 months</option>
+<select id="timeSelect">
+<option value="<3mo">&lt;3 months</option>
 <option value="3-6mo">3–6 months</option>
 <option value="6mo-1yr">6 months–1 year</option>
 <option value="1-3yrs">1–3 years</option>
 <option value="More than 3yrs">More than 3 years</option>
 </select>
 
-<label>D0.1cc EQD2 limit</label>
+<div class="grid">
+<div>
+<label>D0.1cc EQD2 limit (Gy)</label>
 <input id="limit">
+</div>
 
+<div>
 <label>Recovery factor (%)</label>
 <input id="recovery">
 </div>
+</div>
+</section>
 
-<div class="card">
+<section class="card">
 <h2>EQD2 Calculator</h2>
 
-<label>Dose 1</label>
+<div class="grid">
+<div>
+<h3>Course 1</h3>
+<label>Total dose (Gy)</label>
 <input id="dose1" value="50">
-
-<label>Fractions 1</label>
+<label>Fractions</label>
 <input id="fx1" value="25">
+</div>
 
-<label>Dose 2</label>
+<div>
+<h3>Course 2</h3>
+<label>Total dose (Gy)</label>
 <input id="dose2" value="30">
-
-<label>Fractions 2</label>
+<label>Fractions</label>
 <input id="fx2" value="5">
+</div>
+</div>
 
 <label>Alpha/Beta</label>
 <input id="ab" value="3">
+</section>
 
-<h3>Total EQD2</h3>
-<div id="result">0</div>
+<section class="card">
+<h2>Results</h2>
+
+<div class="results">
+<div class="box">
+<div class="label">Course 1 EQD2</div>
+<div class="value" id="eqd21">0</div>
 </div>
+
+<div class="box">
+<div class="label">Course 2 EQD2</div>
+<div class="value" id="eqd22">0</div>
+</div>
+
+<div class="box highlight">
+<div class="label">Total EQD2</div>
+<div class="value" id="total">0</div>
+</div>
+</div>
+</section>
 
 </div>
 
