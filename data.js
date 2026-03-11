@@ -108,15 +108,6 @@ const OAR_DATA = [
     "More than 3yrs": 50.0
   },
   {
-    "OAR": NaN,
-    "D0.1cc EQD2 limit": NaN,
-    "<3mo": NaN,
-    "3-6mo": NaN,
-    "6mo-1yr": NaN,
-    "1-3yrs": NaN,
-    "More than 3yrs": NaN
-  },
-  {
     "OAR": "Optic Nerve",
     "D0.1cc EQD2 limit": 54.0,
     "<3mo": 0.0,

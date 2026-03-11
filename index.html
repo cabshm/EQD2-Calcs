@@ -1,1 +1,119 @@
-<html><head><meta name='viewport' content='width=device-width,initial-scale=1'><title>EQD2 Reirradiation</title><link rel='stylesheet' href='style.css'></head><body><div class='container'><h1>Re‑irradiation EQD2 Calculator</h1><select id='oarSelect'></select><select id='timeSelect'><option value='<3mo'><3 months</option><option value='3-6mo'>3–6 months</option><option value='6mo-1yr'>6 months–1 year</option><option value='1-3yrs'>1–3 years</option><option value='More than 3yrs'>More than 3 years</option></select><input id='limit'><input id='recovery'><h3>Course1</h3><input id='dose1' value='50'><input id='fx1' value='25'><h3>Course2</h3><input id='dose2' value='30'><input id='fx2' value='5'><input id='ab' value='3'><button id='copyBtn'>Copy results for SMPC</button><div>Course1 EQD2 <span id='eqd21'></span></div><div>Course1 corrected <span id='eqd21corr'></span></div><div>Course2 EQD2 <span id='eqd22'></span></div><div>Total EQD2 <span id='total'></span></div><div>EQD2 Reserve <span id='reserve'></span></div><pre id='summary'></pre><script src='data.js'></script><script src='app.js'></script></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Re-irradiation EQD2 Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Re-irradiation EQD2 Calculator</h1>
+      <p class="subhead">Radiation Therapy Biological Effective Dose Calculator with OAR Recovery. *For Guidance Only!!!*</p>
+    </header>
+
+    <section class="card">
+      <h2>OAR EQD2 Analysis</h2>
+
+      <label for="oarSelect">Organ at Risk</label>
+      <select id="oarSelect"></select>
+
+      <label for="timeSelect">Time interval</label>
+      <select id="timeSelect">
+        <option value="<3mo">&lt; 3 months</option>
+        <option value="3-6mo">3–6 months</option>
+        <option value="6mo-1yr">6 months–1 year</option>
+        <option value="1-3yrs">1–3 years</option>
+        <option value="More than 3yrs">More than 3 years</option>
+      </select>
+
+      <div class="grid">
+        <div>
+          <label for="limit">D0.1cc EQD2 limit (Gy)</label>
+          <input id="limit" type="number" step="0.01">
+        </div>
+
+        <div>
+          <label for="recovery">Recovery factor (%)</label>
+          <input id="recovery" type="number" step="1.0">
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>EQD2 Calculator</h2>
+
+      <div class="grid">
+        <div>
+          <h3>Course 1</h3>
+          <label for="dose1">Physical D0.1 cc dose (Gy)</label>
+          <input id="dose1" type="number" step="0.01" value="50">
+
+          <label for="fx1">Fractions</label>
+          <input id="fx1" type="number" step="1" value="25">
+        </div>
+
+        <div>
+          <h3>Course 2</h3>
+          <label for="dose2">Physical D0.1 cc dose (Gy)</label>
+          <input id="dose2" type="number" step="0.01" value="30">
+
+          <label for="fx2">Fractions</label>
+          <input id="fx2" type="number" step="1" value="5">
+        </div>
+      </div>
+
+      <label for="ab">Alpha/Beta</label>
+      <input id="ab" type="number" step="0.01" value="3">
+
+      <div class="actions">
+        <button id="copyBtn" type="button">Copy results for SMPC</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+
+      <div class="results five">
+        <div class="box">
+          <div class="label">Course 1 D0.1cc EQD2</div>
+          <div class="value" id="eqd21"></div>
+        </div>
+
+        <div class="box">
+          <div class="label">Course 1 D0.01 cc EQD2 with recovery factor</div>
+          <div class="value" id="eqd21corr"></div>
+        </div>
+
+        <div class="box">
+          <div class="label">Course 2 D0.01cc EQD2</div>
+          <div class="value" id="eqd22"></div>
+        </div>
+
+        <div class="box highlight">
+          <div class="label">Total D0.1cc EQD2</div>
+          <div class="value" id="total"></div>
+        </div>
+
+        <div class="box">
+          <div class="label">D0.01cc EQD2 Reserve</div>
+          <div class="value" id="reserve"></div>
+        </div>
+      </div>
+
+      <div class="results single">
+        <div class="box">
+          <div class="label">By CC on 3-10-2026</div>
+          <div class="value" id="remaining"></div>
+        </div>
+      </div>
+
+      <pre id="summary"></pre>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
